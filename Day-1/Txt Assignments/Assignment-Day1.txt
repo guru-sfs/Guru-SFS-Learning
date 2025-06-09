@@ -1,0 +1,7 @@
+Q1. Understanding Semantic HTML5 Tags 
+a) Define semantic HTML. Why is it important for web accessibility and SEO?
+ b) List five semantic HTML5 elements and explain their purpose.
+ c) Write a simple HTML structure using these tags, demonstrating proper nesting and hierarchy.
+ANS :
+a) Semantic tags are those tags which provide clear context and meaning for that tag. for ex, header, footer are better understandable than using span and div.
+b)header, footer, nav, form, table

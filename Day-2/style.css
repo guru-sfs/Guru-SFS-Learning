@@ -1,0 +1,16 @@
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+    font-size: 123%;
+}
+div p{
+    color: chartreuse;
+}
+input[type="number"]{
+    font-family: sans-serif;
+    color: darkgoldenrod;
+}
+fieldset>*{
+    color: azure;
+    font-style: oblique;
+}

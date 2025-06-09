@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator with if statements</title>
+    <style>
+      .box {
+        display: flex;
+        height: 70px;
+        border: 1px solid black;
+        width: 110px;
+        font-size: 150%;
+        font-family: fantasy;
+        background: #bcbcbc;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="border: 1px solid black; width: 510px; padding: 10px">
+      <input
+        type="text"
+        id="display"
+        style="
+          height: 100px;
+          width: 500px;
+          border: 1.5px solid black;
+          background: #a2e3ff;
+          border-radius: 5px;
+          font-family: fantasy;
+          font-size: 150%;
+        "
+        readonly
+      />
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(4, 114px);
+          gap: 10px;
+          margin: 10px;
+        "
+      >
+        <button onclick="fillinput('1')" class="box">1</button>
+        <button onclick="fillinput('2')" class="box">2</button>
+        <button onclick="fillinput('3')" class="box">3</button>
+        <button onclick="setOperator('+')" class="box">+</button>
+        <button onclick="fillinput('4')" class="box">4</button>
+        <button onclick="fillinput('5')" class="box">5</button>
+        <button onclick="fillinput('6')" class="box">6</button>
+        <button onclick="setOperator('-')" class="box">-</button>
+        <button onclick="fillinput('7')" class="box">7</button>
+        <button onclick="fillinput('8')" class="box">8</button>
+        <button onclick="fillinput('9')" class="box">9</button>
+        <button onclick="setOperator('*')" class="box">*</button>
+        <button onclick="fillinput('0')" class="box">0</button>
+        <button onclick="calculate()" class="box">=</button>
+        <button onclick="setOperator('%')" class="box">%</button>
+        <button onclick="clearr()" class="box">C</button>
+      </div>
+    </div>
+
+    <script>
+      const display = document.getElementById("display");
+      let firstNum = "";
+      let operator = "";
+      let secondNum = "";
+
+      function fillinput(digit) {
+        if (operator === "") {
+          firstNum += digit;
+          display.value = firstNum;
+        } else {
+          secondNum += digit;
+          display.value = secondNum;
+        }
+      }
+
+      function setOperator(op) {
+        if (firstNum !== "") {
+          operator = op;
+          display.value = firstNum + op;
+        }
+      }
+
+      function calculate() {
+        let result = 0;
+        const num1 = parseFloat(firstNum);
+        const num2 = parseFloat(secondNum);
+
+        if (operator === "+") {
+          result = num1 + num2;
+        } else if (operator === "-") {
+          result = num1 - num2;
+        } else if (operator === "*") {
+          result = num1 * num2;
+        } else if (operator === "/") {
+          if (num2 !== 0) {
+            result = num1 / num2;
+          } else {
+            display.value = "Error";
+            return;
+          }
+        } else if (operator === "%") {
+          result = num1 % num2;
+        }
+
+        display.value = result;
+        firstNum = result.toString();
+        secondNum = "";
+        operator = "";
+      }
+
+      function clearr() {
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+        display.value = "";
+      }
+    </script>
+  </body>
+</html>

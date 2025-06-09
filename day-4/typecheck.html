@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+</head>
+<body>
+
+  <form onsubmit="calculate(event)">
+    <label for="num1">Enter the First Number:</label>
+    <input type="text" id="num1" style="margin: 5px;"><br>
+
+    <label for="num2">Enter the Second Number:</label>
+    <input type="text" id="num2"><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <h4 id="rslt">Output</h4>
+
+  <script>
+    function calculate(e) {
+      e.preventDefault();
+
+      const a = parseFloat(document.getElementById('num1').value);
+      const b = parseFloat(document.getElementById('num2').value);
+
+      if (isNaN(a) || isNaN(b)) {
+        document.getElementById('rslt').textContent = "Please enter valid numbers!";
+      } else {
+        document.getElementById('rslt').textContent = "Result is " + (a + b);
+      }
+    }
+  </script>
+
+</body>
+</html>
