@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="justify-content: center;display: flex;">
+    <form >
+        <label for="">Principal Amount : </label>
+        <input type="text" id="principal"><br><br>
+        <label for="">Intrest Rate : </label>
+        <input type="text" id="intrest"><br><br>
+        <label for="">Time Duration : </label>
+        <input type="text" id="time"><br><br>
+        <div style="display: flex;gap: 10px;margin-top: 20px;justify-content: center;">
+        <button type="button" onclick="simple()">Calculate Simple Intrest</button>
+        <button type="button" onclick="compound()">Caculate Compound Intrest</button>
+        <button type="button" onclick="clearr()">Clear</button></div>
+        <p id="si"></p>
+        <p id="sum"></p>
+        <p id="ci"></p>
+        <p id="tsum"></p>
+    </form>
+</div>
+    <script>
+        function simple(){
+            document.getElementById('ci').textContent=""
+            document.getElementById('tsum').textContent=""
+            document.getElementById('si').textContent=""
+            document.getElementById('sum').textContent=""
+            let pri = parseFloat(document.getElementById('principal').value);
+            let intr = parseFloat(document.getElementById('intrest').value);
+            let time = parseFloat(document.getElementById('time').value);
+            console.log(pri)
+            let r=(pri*intr*time)/100;
+            let sum=pri+r;
+            console.log(r,sum)
+            document.getElementById("si").textContent="Simple Intrest is "+r;
+            document.getElementById("sum").textContent="Sum Amount after Simple Intrest is "+sum;
+        }
+        function compound(){
+            document.getElementById('si').textContent=""
+            document.getElementById('sum').textContent=""
+            let pri = parseFloat(document.getElementById('principal').value);
+            let intr = parseFloat(document.getElementById('intrest').value);
+            let time = parseFloat(document.getElementById('time').value);
+            let tsum = pri *(Math.pow((1 + intr / 100), time));
+            let ci = tsum - pri;
+            document.getElementById("ci").textContent="Compound Intrest is "+ci;
+            document.getElementById("tsum").textContent="Sum Amount after Compound Intrest is "+tsum;
+        }
+        function clearr(){
+            document.getElementById('principal').value=""
+            document.getElementById('intrest').value=""
+            document.getElementById('time').value=""
+            document.getElementById('si').textContent=""
+            document.getElementById('sum').textContent=""
+            document.getElementById('ci').textContent=""
+            document.getElementById('tsum').textContent=""
+        }
+    </script>
+</body>
+</html>
