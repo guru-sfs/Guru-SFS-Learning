@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">Select the number of rounds : </label>
+    <select name="round" id="round">
+    <option value="5">5</option>
+    <option value="7">7</option>
+    <option value="9">9</option>
+    <option value="11">11</option>
+    <option value="13">13</option>
+    <option value="15">15</option></select>
+    <p>Select any one input</p>
+    <input type="radio" name="choice" value="rock">
+    <label for="">Rock</label><br>
+    <input type="radio" name="choice" value="paper">
+    <label for="">Paper</label><br>
+    <input type="radio" name="choice" value="scissor">
+    <label for="">Scissor</label><br>
+    <button type="button" onclick="calculate()">Play</button>
+    <p id="rslt"></p>
+    <h1 id="winner"></h1>
+    <h3 id="eachround"></h3>
+    <script>
+        let totalRounds = 0;
+        let currentRound = 0;
+        let userWins = 0;
+        let compWins = 0;
+        let gameStarted = false;
+        function getComputerChoice() {
+            let options = ["rock", "paper", "scissor"];
+            let randomIndex = Math.floor(Math.random() * options.length);
+            return options[randomIndex];
+        }
+        function calculate(){
+    if (!gameStarted) {
+        totalRounds = parseInt(document.getElementById('round').value);
+        gameStarted = true;
+    }
+
+    if (currentRound >= totalRounds) {
+        return;
+    }
+
+    let selected = document.querySelector('input[name="choice"]:checked');
+    if (!selected) {
+        alert("Please select an option!");
+        return;
+    }
+
+    let choice = selected.value.toLowerCase();
+    let comp = getComputerChoice();
+    console.log(comp)
+    if (choice === comp) {
+        document.getElementById('rslt').textContent = "It's a tie!! Both selected "+choice;
+    } else if (
+        (choice === "rock" && comp === "scissor") ||
+        (choice === "paper" && comp === "rock") ||
+        (choice === "scissor" && comp === "paper")
+    ) {
+        document.getElementById('rslt').textContent = "User wins!! "+choice+" Beats "+comp;
+        userWins++;
+    } else {
+        document.getElementById('rslt').textContent = "User lost!! "+comp+" Lost to "+choice;
+        compWins++;
+    }
+
+    currentRound++;
+
+    if (currentRound === totalRounds) {
+        document.getElementById('eachround').textContent="User is "+userWins+" and comp is "+compWins;
+        if (userWins > compWins) {
+            document.getElementById('winner').textContent = "USER WINSSS";
+        } else if (compWins > userWins) {
+            document.getElementById('winner').textContent = "COMP WINS";
+        } else {
+            document.getElementById('winner').textContent = "TIEEE";
+        }
+    } else {
+        document.getElementById('eachround').textContent="User is "+userWins+" and comp is "+compWins;
+        document.getElementById('winner').textContent = "";
+    }
+}
+
+    </script>
+</body>
+</html>
