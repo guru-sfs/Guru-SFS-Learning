@@ -23,8 +23,8 @@
     function calculate(e) {
       e.preventDefault();
 
-      const a = parseFloat(document.getElementById('num1').value);
-      const b = parseFloat(document.getElementById('num2').value);
+      const a = Number(document.getElementById('num1').value);
+      const b = Number(document.getElementById('num2').value);
 
       if (isNaN(a) || isNaN(b)) {
         document.getElementById('rslt').textContent = "Please enter valid numbers!";
