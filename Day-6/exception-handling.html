@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Enter Age</label>
+    <input type="text"id="age">
+    <button type="button" onclick="calculate()">Submit</button>
+    <p id="rslt"></p>
+    <script>
+        function calculate(){
+            let a=document.getElementById("age").value
+            try{
+                let b=parseInt(a)
+                if (isNaN(b)){
+                    throw new error ("Type Error")             }
+                if (b>=18){
+                    document.getElementById('rslt').textContent="Can vote"
+                }else{
+                    document.getElementById('rslt').textContent="Cant vote"
+                }
+            }
+            catch (error){
+                document.getElementById('rslt').textContent="Enter a Valid number"
+            }
+        }
+    </script>
+</body>
+</html>
