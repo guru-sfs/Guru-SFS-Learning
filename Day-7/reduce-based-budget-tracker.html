@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="">Ente the Total Budget :</label>
+    <input type="text" name="" id="total" />
+    <label for="">Enter the Expenses seperated by Semicolon</label>
+    <input type="text" name="" id="expenses" />
+    <button type="button" onclick="calculate()">Calculate</button>
+    <p id="rslt"></p>
+    <script>
+      function calculate() {
+        let total = document.getElementById("total").value;
+        let expen = document.getElementById("expenses").value;
+        let expenses = expen.split(",");
+        console.log(expenses);
+        let remaining=expenses.reduce((a,b)=>a-b,total)
+        console.log(remaining)
+        document.getElementById('rslt').textContent="Remaining is "+remaining;
+      }
+    </script>
+  </body>
+</html>

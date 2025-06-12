@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">UserName : </label>
+    <input type="text" name="" id="username"><br>
+    <label for="">Email : </label>
+    <input type="text" name="" id="email"><br>
+    <label for="">Password : </label>
+    <input type="text" name="" id="pass"><br>
+    <label for="">Age : </label>
+    <input type="text" name="" id="age"><br>
+    <label for="">Address : </label>
+    <input type="text" name="" id="address"><br>
+    <label for="">Comment : </label>
+    <input type="text" name="" id="comment"><br>
+    <button type="button" onclick="sanitize()">Sanitize</button>
+    <div>
+        <p id="ansname"></p>
+        <p id="ansmail"></p>
+        <p id="anspass"></p>
+        <p id="ansage"></p>
+        <p id="ansaddress"></p>
+        <p id="anscomment"></p>
+    </div>
+    <script>
+        function sanitize(){
+            let name=document.getElementById('username').value
+            let email=document.getElementById('email').value
+            let pass=document.getElementById('pass').value
+            let age=document.getElementById('age').value
+            let address=document.getElementById('address').value
+            let comment=document.getElementById('comment').value
+            console.log(pass)
+            name=name.trim();
+            const validemail=/\S+@S+\.\S/.test(email)
+            pass=pass.toLowerCase();
+            age=parseInt(age)
+            address = name.replace(/[^a-zA-Z0-9_]/g, '')
+            comment=comment.slice(0,10)
+
+            document.getElementById('ansname').textContent="name is "+name
+            document.getElementById('ansmail').textContent="Is Email validated?? : "+validemail
+            document.getElementById('anspass').textContent="Password : "+pass
+            document.getElementById('ansage').textContent="Type of age is : "+typeof age
+            document.getElementById('ansaddress').textContent="Address is "+address
+            document.getElementById('anscomment').textContent="Comment : "+comment
+        }
+    </script>
+</body>
+</html>

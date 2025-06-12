@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">Phone Number : </label>
+    <input type="text" name="" id="number">
+    <p id="numbermessage"></p>
+    <label for="">Email : </label>
+    <input type="text" name="" id="email">
+    <p id="emailmessage"></p>
+    <button type="button" onclick="check()">Check</button>
+    <h3 id="sucess"></h3>
+    <script>
+        function check(){
+            let number=document.getElementById("number").value
+            let mail=document.getElementById('email').value
+            let a=/\S+@\S+\.\S+/.test(mail);
+            let b=/^\d+$/.test(number);
+            console.log(a)
+            if ((a)&&((b)&&(number.length===10))){
+                document.getElementById("sucess").textContent="Sucess"
+            }else if(!a){
+                document.getElementById("emailmessage").textContent="Mail Pattern not matched"
+            }else if((!b)||(number.length!=10)){
+                document.getElementById("numbermessage").textContent="Invalid Number"
+            }
+        }
+    </script>
+</body>
+</html>
