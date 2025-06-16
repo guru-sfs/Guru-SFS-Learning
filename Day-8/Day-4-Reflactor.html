@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        display: flex;
+        height: 70px;
+        border: 1px solid black;
+        width: 110px;
+        font-size: 150%;
+        font-family: fantasy;
+        background: #bcbcbc;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="border: 1px solid black; width: 510px; padding: 10px"
+      id="calculatore"
+    >
+      <input
+        type="text"
+        id="display"
+        style="
+          height: 100px;
+          width: 500px;
+          border: 1.5px solid black;
+          background: #a2e3ff;
+          border-radius: 5px;
+          font-family: fantasy;
+          font-size: 150%;
+        "
+      />
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(4, 114px);
+          gap: 10px;
+          margin: 10px;
+        "
+      >
+        <button onclick="fillinput('1')" id="1" class="box">1</button>
+        <button onclick="fillinput('2')" id="2" class="box">2</button>
+        <button onclick="fillinput('3')" id="3" class="box">3</button>
+        <button onclick="fillinput('+')" id="+" class="box">+</button>
+        <button onclick="fillinput('4')" id="4" class="box">4</button>
+        <button onclick="fillinput('5')" id="5" class="box">5</button>
+        <button onclick="fillinput('6')" id="6" class="box">6</button>
+        <button onclick="fillinput('-')" id="-" class="box">-</button>
+        <button onclick="fillinput('7')" id="7" class="box">7</button>
+        <button onclick="fillinput('8')" id="8" class="box">8</button>
+        <button onclick="fillinput('9')" id="9" class="box">9</button>
+        <button onclick="fillinput('*')" id="*" class="box">*</button>
+        <button onclick="fillinput('0')" id="0" class="box">0</button>
+        <button onclick="calculate()" id="=" class="box">=</button>
+        <button onclick="fillinput('%')" id="%" class="box">%</button>
+        <button onclick="clearr()" class="box">C</button>
+      </div>
+    </div>
+    <script type="module">
+        import {fillinput,calculate,clearr} from './export.js'
+        window.fillinput = fillinput;
+        window.calculate = calculate;
+        window.clearr = clearr;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <h1>WEATHER APP</h1>
+    <input type="text" id="name" placeholder="Enter a City Name" />
+    <button type="button" onclick="fetch_weather()">Submit</button>
+    <p id="rslt"></p>
+    <script>
+      const apiKey = "39ad9cad63759fc58d8667bd8fce1b09";
+
+      function fetchWithTimeout(url, options = {}, timeout = 55000) {
+        return Promise.race([
+          fetch(url, options),
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Request timed out")), timeout)
+          ),
+        ]);
+      }
+
+      async function fetch_weather() {
+        const city = document.getElementById("name").value;
+
+        if (!city) {
+          alert("Please enter a city name");
+          return;
+        }
+
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+        try {
+          const response = await fetchWithTimeout(url);
+          if (!response.ok) {
+            throw new Error("City not found or API error");
+          }
+          const data = await response.json();
+          document.getElementById(
+            "rslt"
+          ).textContent = `Weather in ${data.name} is ${data.weather[0].description} and Temprsture is ${data.main.temp}°C`;
+        } catch (error) {
+          document.getElementById("rslt").textContent =
+            "Failed to fetch weather. Please check the city name.";
+        }
+      }
+    </script>
+  </body>
+</html>

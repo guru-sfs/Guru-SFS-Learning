@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <form id="myform">
+      <label for="name">User Name:</label>
+      <input type="text" name="name" id="name" />
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="pass" /><br /></div>
+      <button type="button" onclick="addData()">Submit</button>
+      <button type="button" onclick="add()">Add</button>
+    </form>
+    <script>
+      function add() {
+        let container = document.getElementById("myform");
+        let label1=document.createElement("label");
+        label1.textContent="User Name:"
+        let input = document.createElement("input");
+        input.type="text";
+        input.name="name"
+        
+        let label2=document.createElement("label");
+        label2.textContent="Password : "
+        let input2 = document.createElement("input");
+        input2.type="text";
+        input2.name="password";
+
+        container.appendChild(label1)
+        container.appendChild(input)
+        container.appendChild(label2)
+        container.appendChild(input2)
+        container.appendChild(document.createElement("br"))
+      }
+      function addData(){
+        let form=document.getElementById('myform')
+        let formdata=new FormData(form);
+        let result=[];
+        let data={};
+        let count=1
+        for (let [key,value] of formdata.entries()){
+          if (key==='name'){
+            data={user_id:count}
+            data.name=value
+            count++
+          }else if(key==='password'){
+            data.password=value
+            result.push(data)
+          }
+        }
+        let jsonData=JSON.stringify(result)
+        console.log(jsonData)
+      }
+    </script>
+  </body>
+</html>
