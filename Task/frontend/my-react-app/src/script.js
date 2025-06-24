@@ -5,7 +5,7 @@ export const handleSignin = async ({ Email, Pass }, navigate, setMessage) => {
     const res = await axios.post("http://localhost:8080/Signin", {
       Email,
       Pass,
-    })
+    });
 
     if (res.data.redirectTo === "/Users") {
       navigate("/Users");

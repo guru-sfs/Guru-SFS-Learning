@@ -20,7 +20,7 @@ function Edit() {
   });
   useEffect(() => {
     getUserByEmail(email, setUser);
-  }, [email])
+  }, [email]);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });

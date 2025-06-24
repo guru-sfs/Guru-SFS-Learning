@@ -12,7 +12,7 @@ function Signin() {
     const [Pass, setPassword] = useState("");
     const [Message, setMessage]=useState("");
     const handleSubmit = (e) => {
-      e.preventDefault()
+      e.preventDefault();
       handleSignin({ Email, Pass }, navigate, setMessage); 
     }
       

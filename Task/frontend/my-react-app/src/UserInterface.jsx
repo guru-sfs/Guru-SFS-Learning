@@ -62,7 +62,7 @@ function UserInterface() {
         </Paper>
       </Box>
     </>
-  )
+  );
 }
 
 export default UserInterface

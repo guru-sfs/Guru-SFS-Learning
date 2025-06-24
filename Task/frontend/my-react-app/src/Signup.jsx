@@ -7,7 +7,7 @@ function Signup() {
   const navigate = useNavigate();
     const goToSignin = () => {
       navigate("/Signin");
-    }
+    };
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [Email, setEmail] = useState("");

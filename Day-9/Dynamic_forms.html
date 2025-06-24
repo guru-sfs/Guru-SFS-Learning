@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Form</title>
+  </head>
+  <body>
+    <form id="myform"></form>
+    <button type="button" onclick="submit()">Submit</button>
+    <script>
+      const container = document.getElementById("myform");
+
+      const formMeta = {
+        components: [
+          { type: "text", label: "password", key: "password" },
+          { type: "number", label: "Enter age", key: "age" },
+          { type: "email", label: "Enter email", key: "email" },
+          // {
+          //   type: "dataGrid",
+          //   lable: "Datagrid",
+          //   components: [
+          //     { type: "text", label: "Class", key: "class" },
+          //     { type: "text", label: "Marks", key: "marks" },
+          //   ],
+          // },
+        ],
+      };
+      //formData = {passward:"sadsad", dataGrid:[{class:"11",marks:"30"},{class:"12",marks:"40"}]}
+      for (let i = 0; i < formMeta.components.length; i++) {
+        const component = formMeta.components[i];
+
+        const label = document.createElement("label");
+        label.textContent = component.label;
+        label.setAttribute("for", component.key);
+
+        const input = document.createElement("input");
+        input.type = component.type;
+        input.name = component.key;
+        input.id = component.key;
+
+        container.appendChild(label);
+        container.appendChild(input);
+        container.appendChild(document.createElement("br"));
+        container.appendChild(document.createElement("br"));
+      }
+      function submit() {
+        result = {};
+        let form = document.getElementById("myform");
+        let formData = new FormData(form);
+        for (let [key, value] of formData.entries()) {
+          result[key] = value;
+        }
+        let jsonData = JSON.stringify(result, null, 2);
+        console.log(jsonData);
+      }
+    </script>
+  </body>
+</html>
