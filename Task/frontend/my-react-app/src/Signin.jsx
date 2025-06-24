@@ -1,30 +1,21 @@
 import React,{useState} from 'react'
 import {Container,Box,Paper,TextField,Button,Typography} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import { handleSignin } from './script';
 
 function Signin() {
   const navigate = useNavigate();
   const goToSignup = () => {
     navigate("/Signup");
-  };
+  }
     const [Email, setEmail] = useState("");
     const [Pass, setPassword] = useState("");
     const [Message, setMessage]=useState("");
-    const handleSubmit=(e)=>{
-      e.preventDefault()
-      axios.post('http://localhost:8080/Signin',{Email,Pass})
-        .then((res)=>{
-          if (res.data.redirectTo) {
-            navigate(res.data.redirectTo);
-          } 
-      setMessage(res.data.Message);
-        })
-      .catch((err)=>{
-        console.log(err)
-        setMessage(err.response.data.Message);
-    })
-  }
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      handleSignin({ Email, Pass }, navigate, setMessage); 
+    };
+      
   return (
     <>
       <Container maxWidth="xs" display="flex">
@@ -89,7 +80,7 @@ function Signin() {
               variant="contained"
               color="primary"
               type="submit"
-              style={{
+              sx={{
                 width: "100%",
                 marginTop: "4%",
                 color: "White",

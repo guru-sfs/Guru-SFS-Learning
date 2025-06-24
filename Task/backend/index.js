@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
+const port=process.env.PORT||4000;
 
 mongoose.connect("mongodb://localhost:27017/Users");
 const user_schema = new mongoose.Schema({
@@ -22,7 +23,8 @@ const user_schema = new mongoose.Schema({
   //     data: Buffer,
   //     contentType: String,
   //   },
-});
+},
+{ timestamps: true });
 
 const Users = mongoose.model("datas", user_schema);
 
@@ -60,7 +62,9 @@ app.post("/Signin", async (req, res) => {
     } else if (user.Pass != Pass) {
         return res.status(409).json({ Message: "Email and password mismatch" });
     } else {
-        return res.status(200).json({ Message: "Successful" });
+        return res
+          .status(200)
+          .json({ Message: "Successful", redirectTo: `/UserInterface` });
     }
   } catch (err) {
     console.error("error", err);
@@ -92,6 +96,6 @@ app.delete("/Users/:email",async(req,res)=>{
   res.json({message:"User deleted"})
 })
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
   console.log("Server running");
 });

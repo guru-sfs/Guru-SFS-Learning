@@ -3,6 +3,7 @@ import Signup from "./Signup";
 import Signin from "./Signin";
 import Users from './Users';
 import Edit from "./Edit";
+import UserInterface from "./UserInterface";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Users" element={<Users />} />
           <Route path="/Edit/:email" element={<Edit />} />
+          <Route path='/UserInterface/:email' element={<UserInterface />}/>
         </Routes>
       </BrowserRouter>
     </>

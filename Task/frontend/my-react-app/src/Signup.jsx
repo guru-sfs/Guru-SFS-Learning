@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Container,Box,Paper,TextField,Button,Typography} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { handleSignup } from './script';
 
 function Signup() {
   const navigate = useNavigate();
@@ -13,25 +13,14 @@ function Signup() {
     const [Email, setEmail] = useState("");
     const [Pass, setPassword] = useState("");
     const [Message,setMessage]=useState("");
-    const handleSubmit=(e)=>{
-      e.preventDefault()
-      const Name=firstname+lastname
-      axios
-        .post("http://localhost:8080/Signup", { Name, Email, Pass })
-        .then((res) => {
-          if (res.data.redirectTo) {
-            navigate(res.data.redirectTo);
-          }          
-          console.log(res);
-          setMessage(res.data.Message);
-        })
-        .catch((err) => {
-          console.log(err);
-          setMessage(err.response.data.Message);
-          }
-        );
-        
-    }
+    const handleSubmit = (e) => {
+          e.preventDefault();
+          handleSignup(
+            { firstname, lastname, Email, Pass },
+            navigate,
+            setMessage
+          );
+        };
   return (
     <>
       <Container maxWidth="xs" display="flex" >

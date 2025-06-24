@@ -1,29 +1,18 @@
 import {useEffect,useState} from 'react'
-import axios from 'axios'
 import { Box, Table, TableHead, TableCell, TableContainer,Paper, Button,TableRow,TableBody} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { deleteUser,fetchUsers} from './script';
 function Users() {
     const [users,setUsers]=useState([])
     const [Total,setTotal]=useState()
     const navigate=useNavigate();
     useEffect(() => {
-      fetchUsers();
+      fetchUsers(setUsers,setTotal);
     }, []);
 
-    const fetchUsers = () => {
-      axios
-        .get("http://localhost:8080/Users")
-        .then((res) => {
-          setUsers(res.data.users);
-          setTotal(res.data.users.length);
-        })
-        .catch((err) => console.log(err));
-    };
     const handleDelete=(email)=>{
-      axios.delete(`http://localhost:8080/Users/${email}`)
-      .then(()=>fetchUsers())
-      .catch((err)=>console.log(err));
-    }
+      deleteUser(email, () => fetchUsers(setUsers, setTotal));
+    };
     const handleEdit=(email)=>{
       navigate(`/Edit/${email}`)
     }

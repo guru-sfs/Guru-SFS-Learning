@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { TextField,Paper,Button,Container,Typography,Box,Grid } from "@mui/material";
+import { getUserByEmail, updateUser } from "./script";
 
 function Edit() {
   const {email}=useParams();
@@ -19,10 +19,7 @@ function Edit() {
     Role: "",
   });
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/Users/${email}`)
-      .then((res) => setUser(res.data.user))
-      .catch((err) => console.log(err));
+    getUserByEmail(email, setUser);
   }, [email]);
 
   const handleChange = (e) => {
@@ -31,9 +28,7 @@ function Edit() {
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    axios.put(`http://localhost:8080/Users/${email}`,user)
-    .then(()=>navigate("/Users"))
-    .catch((err)=>console.log(err));
+   updateUser(email,user,navigate);
   };
   return (
     <Container maxWidth="sm" display="flex">
