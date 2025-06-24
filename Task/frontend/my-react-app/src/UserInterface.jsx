@@ -23,7 +23,7 @@ function UserInterface() {
       <Box display="flex" justifyContent="center" mt={4}>
         <Paper elevation={4} sx={{ padding: 4, width: 500 }}>
           <Typography variant="h5" gutterBottom>
-            Welcome, {user.Name}
+            Welcome! {user.Name}
           </Typography>
           <Divider sx={{ my: 2 }} />
           <Typography>

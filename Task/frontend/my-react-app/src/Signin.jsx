@@ -14,7 +14,7 @@ function Signin() {
     const handleSubmit = (e) => {
       e.preventDefault();
       handleSignin({ Email, Pass }, navigate, setMessage); 
-    };
+    }
       
   return (
     <>

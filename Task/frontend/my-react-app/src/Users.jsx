@@ -9,7 +9,7 @@ function Users() {
     useEffect(() => {
       fetchUsers(setUsers,setTotal);
     }, []);
-
+    
     const handleDelete=(email)=>{
       deleteUser(email, () => fetchUsers(setUsers, setTotal));
     };

@@ -20,7 +20,7 @@ function Signup() {
             navigate,
             setMessage
           );
-        };
+        }
   return (
     <>
       <Container maxWidth="xs" display="flex" >

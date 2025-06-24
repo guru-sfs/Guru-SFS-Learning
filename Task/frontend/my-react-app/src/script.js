@@ -17,8 +17,6 @@ export const handleSignin = async ({ Email, Pass }, navigate, setMessage) => {
     setMessage(err.response.data.Message);
   }
 };
-
-
 export const handleSignup = async (
   { firstname, lastname, Email, Pass },
   navigate,
